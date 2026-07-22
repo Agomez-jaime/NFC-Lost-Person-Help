@@ -2,6 +2,7 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import { QRCodeSVG } from "qrcode.react";
+import BrandHeader from "@/components/BrandHeader";
 
 interface Profile {
   tagId: string;
@@ -72,6 +73,7 @@ export default function AdminApp() {
   if (auth === "anon") {
     return (
       <main className="page">
+        <BrandHeader />
         <div className="card">
           <h1>Panel del cuidador</h1>
           <form onSubmit={handleLogin}>
@@ -97,6 +99,7 @@ export default function AdminApp() {
 
   return (
     <main className="page">
+      <BrandHeader />
       <div className="admin-header">
         <h1>Panel del cuidador</h1>
         <button className="btn-secondary" onClick={handleLogout}>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
+import BrandHeader from "@/components/BrandHeader";
 
 interface Profile {
   firstName: string;
@@ -157,6 +158,7 @@ export default function TagView({ tagId }: { tagId: string }) {
   if (status === "not_found") {
     return (
       <main className="page">
+        <BrandHeader />
         <div className="card">
           <h1>Código no válido</h1>
           <p>
@@ -172,6 +174,7 @@ export default function TagView({ tagId }: { tagId: string }) {
   if (status === "error" || !profile) {
     return (
       <main className="page">
+        <BrandHeader />
         <div className="card">
           <h1>No se pudo cargar la página</h1>
           <p>
@@ -185,6 +188,7 @@ export default function TagView({ tagId }: { tagId: string }) {
 
   return (
     <main className="page">
+      <BrandHeader />
       <div className="card">
         {profile.photoUrl && (
           // eslint-disable-next-line @next/next/no-img-element

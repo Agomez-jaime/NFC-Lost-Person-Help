@@ -1,19 +1,4 @@
-import { Fraunces, Work_Sans } from "next/font/google";
 import "./home.css";
-
-const display = Fraunces({
-  subsets: ["latin"],
-  weight: ["600", "700"],
-  variable: "--font-display",
-  display: "swap",
-});
-
-const body = Work_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-body",
-  display: "swap",
-});
 
 function ShieldIcon() {
   return (
@@ -85,7 +70,7 @@ function LockIcon() {
 
 export default function HomePage() {
   return (
-    <div className={`landing ${display.variable} ${body.variable}`} style={{ fontFamily: "var(--font-body), sans-serif" }}>
+    <div className="landing">
       <header className="l-header">
         <div className="l-header-inner">
           <a className="l-brand" href="/">
