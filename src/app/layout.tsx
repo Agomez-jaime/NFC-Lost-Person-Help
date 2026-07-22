@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Ayuda para encontrar el camino",
+  title: "Guardián NFC",
   description: "Página de ayuda vinculada a una etiqueta NFC/QR",
 };
 
