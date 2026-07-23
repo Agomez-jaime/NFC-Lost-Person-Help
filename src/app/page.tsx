@@ -80,7 +80,7 @@ export default function HomePage() {
             Guardián NFC
           </a>
           <a className="l-btn l-btn-ghost l-btn-sm" href="/admin">
-            Panel del cuidador
+            Acceso administrador
           </a>
         </div>
       </header>
