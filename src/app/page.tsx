@@ -79,8 +79,8 @@ export default function HomePage() {
             </span>
             Guardián NFC
           </a>
-          <a className="l-btn l-btn-teal l-btn-sm" href="/admin">
-            Crear etiqueta
+          <a className="l-btn l-btn-ghost l-btn-sm" href="/admin">
+            Panel del cuidador
           </a>
         </div>
       </header>
@@ -93,15 +93,12 @@ export default function HomePage() {
             </span>
             <h1>Si tu ser querido se pierde, alguien podrá ayudarlo.</h1>
             <p className="l-lede">
-              Crea una página segura vinculada a una etiqueta NFC. Cuando alguien la
-              escanee, te avisa al instante con su ubicación —{" "}
-              <strong>sin mostrar nunca tus datos privados</strong>.
+              Cada etiqueta NFC tiene una página segura y privada. Cuando alguien la
+              escanea, el cuidador recibe al instante su ubicación —{" "}
+              <strong>sin mostrar nunca datos privados</strong>.
             </p>
             <div className="l-hero-actions">
-              <a className="l-btn l-btn-teal" href="/admin">
-                Crear una etiqueta gratis
-              </a>
-              <a className="l-btn l-btn-ghost" href="#como-funciona">
+              <a className="l-btn l-btn-teal" href="#como-funciona">
                 Cómo funciona
               </a>
             </div>
@@ -126,15 +123,15 @@ export default function HomePage() {
             <div className="l-step-icon">
               <PhoneIcon />
             </div>
-            <h3>1. Crea el perfil</h3>
-            <p>Su nombre y una nota de cuidado para quien la encuentre. Menos de 2 minutos.</p>
+            <h3>1. Recibe tu etiqueta</h3>
+            <p>Ya viene lista con el perfil de tu familiar. Puedes editar la nota y el teléfono cuando quieras.</p>
           </div>
           <div className="l-step-card">
             <div className="l-step-icon">
               <ShieldIcon />
             </div>
-            <h3>2. Vincula la etiqueta</h3>
-            <p>Graba el enlace en una etiqueta NFC, o imprime el código QR de respaldo.</p>
+            <h3>2. Vincula tu Telegram</h3>
+            <p>Desde tu celular, en menos de un minuto, para empezar a recibir las alertas.</p>
           </div>
           <div className="l-step-card">
             <div className="l-step-icon">
@@ -187,11 +184,12 @@ export default function HomePage() {
 
       <div className="l-cta-wrap">
         <div className="l-cta">
-          <h2>Crea la etiqueta hoy. Duerme tranquilo mañana.</h2>
-          <p>Sin registros complicados. Solo un enlace privado que puedes grabar en cualquier NFC.</p>
-          <a className="l-btn l-btn-coral" href="/admin">
-            Comenzar ahora
-          </a>
+          <h2>Un enlace privado. Tranquilidad todos los días.</h2>
+          <p>
+            Cada etiqueta es personal y gratuita para tu familia. Solo el cuidador
+            principal puede crear o desactivar etiquetas — tú siempre puedes
+            actualizar los datos de la tuya desde tu enlace privado.
+          </p>
         </div>
       </div>
 
