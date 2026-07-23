@@ -24,6 +24,7 @@ export default function TagView({ tagId }: { tagId: string }) {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [locationState, setLocationState] = useState<LocationState>("idle");
+  const [locationAccuracy, setLocationAccuracy] = useState<number | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
@@ -106,25 +107,64 @@ export default function TagView({ tagId }: { tagId: string }) {
       return;
     }
     setLocationState("sharing");
-    navigator.geolocation.getCurrentPosition(
-      async (pos) => {
-        try {
-          const res = await fetch(`/api/session/${sessionId}/location`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              lat: pos.coords.latitude,
-              lng: pos.coords.longitude,
-              accuracy: pos.coords.accuracy,
-            }),
-          });
-          setLocationState(res.ok ? "shared" : "error");
-        } catch {
+
+    // GPS fixes tend to get more precise over the first few seconds, so we
+    // sample readings briefly and keep the tightest one instead of settling
+    // for whichever arrives first.
+    const GOOD_ENOUGH_METERS = 20;
+    const MAX_WAIT_MS = 8000;
+    let best: GeolocationPosition | null = null;
+    let watchId: number | null = null;
+    let settled = false;
+
+    const finish = async () => {
+      if (settled) return;
+      settled = true;
+      if (watchId !== null) navigator.geolocation.clearWatch(watchId);
+
+      if (!best) {
+        setLocationState("error");
+        return;
+      }
+      try {
+        const res = await fetch(`/api/session/${sessionId}/location`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            lat: best.coords.latitude,
+            lng: best.coords.longitude,
+            accuracy: best.coords.accuracy,
+          }),
+        });
+        if (res.ok) {
+          setLocationAccuracy(best.coords.accuracy);
+          setLocationState("shared");
+        } else {
           setLocationState("error");
         }
+      } catch {
+        setLocationState("error");
+      }
+    };
+
+    const timeoutId = setTimeout(finish, MAX_WAIT_MS);
+
+    watchId = navigator.geolocation.watchPosition(
+      (pos) => {
+        if (!best || pos.coords.accuracy < best.coords.accuracy) {
+          best = pos;
+        }
+        if (pos.coords.accuracy <= GOOD_ENOUGH_METERS) {
+          clearTimeout(timeoutId);
+          finish();
+        }
       },
-      () => setLocationState("denied"),
-      { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
+      () => {
+        clearTimeout(timeoutId);
+        settled = true;
+        setLocationState("denied");
+      },
+      { enableHighAccuracy: true, maximumAge: 0, timeout: MAX_WAIT_MS }
     );
   }
 
@@ -214,9 +254,15 @@ export default function TagView({ tagId }: { tagId: string }) {
           {locationState === "shared"
             ? "Ubicación enviada ✅ (toca para actualizar)"
             : locationState === "sharing"
-              ? "Enviando..."
+              ? "Buscando la ubicación más precisa…"
               : "Compartir mi ubicación"}
         </button>
+        {locationState === "shared" && locationAccuracy != null && (
+          <p className="muted" style={{ marginTop: 8 }}>
+            Precisión aproximada: ±{Math.round(locationAccuracy)} metros. Si estás en un
+            lugar cerrado, salir al aire libre suele mejorarla.
+          </p>
+        )}
         {locationState === "denied" && (
           <p className="warn">
             No se pudo obtener tu ubicación. Revisa los permisos de ubicación del

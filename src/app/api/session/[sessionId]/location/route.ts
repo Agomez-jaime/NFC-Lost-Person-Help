@@ -27,9 +27,11 @@ export async function POST(
 
   if (profile?.guardianChatId) {
     const link = mapsLink(lat, lng);
+    const precision =
+      accuracy != null && Number.isFinite(accuracy) ? `\n(precisión aproximada: ±${Math.round(accuracy)} m)` : "";
     const text = wasAlreadyActive
-      ? `📍 Ubicación actualizada de quien encontró a <b>${escapeHtml(profile.firstName)}</b>:\n${link}`
-      : `🆘 Alguien escaneó la etiqueta de <b>${escapeHtml(profile.firstName)}</b> y compartió su ubicación:\n${link}\n\nPuedes responder aquí mismo y tu mensaje llegará a la persona que lo encontró.`;
+      ? `📍 Ubicación actualizada de quien encontró a <b>${escapeHtml(profile.firstName)}</b>:\n${link}${precision}`
+      : `🆘 Alguien escaneó la etiqueta de <b>${escapeHtml(profile.firstName)}</b> y compartió su ubicación:\n${link}${precision}\n\nPuedes responder aquí mismo y tu mensaje llegará a la persona que lo encontró.`;
     await sendTelegramMessage(profile.guardianChatId, text);
   }
 
