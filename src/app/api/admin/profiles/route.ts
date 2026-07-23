@@ -1,13 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isAdminRequest } from "@/lib/adminAuth";
-import { createProfile, listProfiles } from "@/lib/db";
+import { createProfile, ensureEditToken, listProfiles } from "@/lib/db";
 
 export async function GET(req: NextRequest) {
   if (!isAdminRequest(req)) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
   const profiles = await listProfiles();
-  return NextResponse.json({ profiles });
+  // Profiles created before the family edit-link feature existed won't have
+  // an editToken yet — backfill one the first time they're listed.
+  const withTokens = await Promise.all(
+    profiles.map(async (p) => ({ ...p, editToken: await ensureEditToken(p.tagId, p.editToken) }))
+  );
+  return NextResponse.json({ profiles: withTokens });
 }
 
 export async function POST(req: NextRequest) {

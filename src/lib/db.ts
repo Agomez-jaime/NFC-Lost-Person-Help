@@ -11,6 +11,7 @@ export interface ProfilePublic {
 
 export interface Profile extends ProfilePublic {
   tagId: string;
+  editToken?: string;
   guardianChatId?: number;
   activeSessionId?: string;
   active: boolean;
@@ -33,6 +34,7 @@ function sessionsCol() {
 function toProfile(tagId: string, data: FirebaseFirestore.DocumentData): Profile {
   return {
     tagId,
+    editToken: data.editToken,
     firstName: data.firstName,
     careNote: data.careNote,
     photoUrl: data.photoUrl,
@@ -70,6 +72,7 @@ export async function createProfile(input: {
 }): Promise<Profile> {
   const tagId = input.tagId || generateId(6);
   const data = {
+    editToken: generateId(9),
     firstName: input.firstName,
     careNote: input.careNote,
     photoUrl: input.photoUrl ?? null,
@@ -95,6 +98,21 @@ export async function updateProfile(
   await profilesCol()
     .doc(tagId)
     .set({ ...patch, updatedAt: FieldValue.serverTimestamp() }, { merge: true });
+}
+
+export async function getProfileByEditToken(editToken: string): Promise<Profile | null> {
+  const snap = await profilesCol().where("editToken", "==", editToken).limit(1).get();
+  if (snap.empty) return null;
+  const doc = snap.docs[0];
+  return toProfile(doc.id, doc.data());
+}
+
+/** Backfills an editToken for profiles created before this field existed. */
+export async function ensureEditToken(tagId: string, current?: string): Promise<string> {
+  if (current) return current;
+  const token = generateId(9);
+  await profilesCol().doc(tagId).set({ editToken: token }, { merge: true });
+  return token;
 }
 
 export async function getProfileByChatId(chatId: number): Promise<Profile | null> {

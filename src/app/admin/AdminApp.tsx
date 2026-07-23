@@ -6,6 +6,7 @@ import BrandHeader from "@/components/BrandHeader";
 
 interface Profile {
   tagId: string;
+  editToken?: string;
   firstName: string;
   careNote: string;
   photoUrl?: string;
@@ -142,6 +143,13 @@ function botLink(tagId: string): string | null {
   return `https://t.me/${username}?start=${tagId}`;
 }
 
+function familyEditUrl(editToken?: string): string | null {
+  if (!editToken) return null;
+  const base =
+    typeof window !== "undefined" ? window.location.origin : process.env.NEXT_PUBLIC_APP_URL ?? "";
+  return `${base}/e/${editToken}`;
+}
+
 function ProfileCard({ profile, onUpdated }: { profile: Profile; onUpdated: () => void }) {
   const [editing, setEditing] = useState(false);
   const [firstName, setFirstName] = useState(profile.firstName);
@@ -150,8 +158,10 @@ function ProfileCard({ profile, onUpdated }: { profile: Profile; onUpdated: () =
   const [emergencyPhone, setEmergencyPhone] = useState(profile.emergencyPhone ?? "");
   const [saving, setSaving] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [copiedFamily, setCopiedFamily] = useState(false);
   const url = tagUrl(profile.tagId);
   const linkUrl = botLink(profile.tagId);
+  const familyUrl = familyEditUrl(profile.editToken);
 
   async function save(patch: Record<string, unknown>) {
     setSaving(true);
@@ -189,6 +199,28 @@ function ProfileCard({ profile, onUpdated }: { profile: Profile; onUpdated: () =
       <div style={{ marginTop: 12 }}>
         <QRCodeSVG value={url} size={140} />
       </div>
+
+      {familyUrl && (
+        <div style={{ marginTop: 16, paddingTop: 16, borderTop: "1px solid var(--line)" }}>
+          <p className="muted" style={{ marginBottom: 6 }}>
+            Enlace privado para que la familia edite nombre, nota y teléfono, y
+            vincule su propio Telegram (no pueden ver otras etiquetas ni cambiar
+            este link NFC):
+          </p>
+          <div className="tag-url">{familyUrl}</div>
+          <button
+            className="btn-secondary"
+            style={{ marginTop: 8 }}
+            onClick={() => {
+              navigator.clipboard.writeText(familyUrl);
+              setCopiedFamily(true);
+              setTimeout(() => setCopiedFamily(false), 1500);
+            }}
+          >
+            {copiedFamily ? "Copiado ✅" : "Copiar enlace para la familia"}
+          </button>
+        </div>
+      )}
 
       <p className="muted" style={{ marginTop: 12 }}>
         {profile.guardianChatId

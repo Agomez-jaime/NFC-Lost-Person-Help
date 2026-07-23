@@ -29,3 +29,10 @@ export async function sendTelegramMessage(chatId: number | string, text: string)
 export function mapsLink(lat: number, lng: number): string {
   return `https://www.google.com/maps?q=${lat},${lng}`;
 }
+
+/** Deep link that opens a chat with the bot and auto-sends "/start <tagId>". */
+export function telegramStartLink(tagId: string): string | null {
+  const username = process.env.NEXT_PUBLIC_TELEGRAM_BOT_USERNAME;
+  if (!username) return null;
+  return `https://t.me/${username}?start=${tagId}`;
+}
