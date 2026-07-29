@@ -152,9 +152,10 @@ export default function HomePage() {
             <h2>Privacidad por diseño</h2>
             <p>
               Quien encuentra a la persona solo ve su nombre y la nota de cuidado que tú
-              escribas — <strong>nunca tu número de teléfono</strong>. Puede escribirte un
-              mensaje o compartir su ubicación, y tú respondes directo, sin que nadie vea
-              tus datos.
+              escribas — <strong>nunca el número de teléfono o Telegram del cuidador</strong>.
+              Puede escribirte un mensaje o compartir su ubicación, y tú respondes directo,
+              sin que nadie vea tus datos de contacto. (El único teléfono que sí es público
+              es el de emergencia opcional que tú decidas mostrar, para casos urgentes.)
             </p>
           </div>
           <div className="l-privacy-card">
@@ -175,7 +176,7 @@ export default function HomePage() {
                 <span className="l-privacy-icon">
                   <ClockIcon />
                 </span>
-                Los datos se borran solos a las 48 horas
+                Cada ubicación y chat se borra solo a las 48 horas (el perfil no)
               </li>
             </ul>
           </div>

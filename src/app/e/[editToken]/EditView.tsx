@@ -130,7 +130,7 @@ export default function EditView({ editToken }: { editToken: string }) {
           <textarea rows={4} value={careNote} onChange={(e) => setCareNote(e.target.value)} />
         </div>
         <div className="field">
-          <label>Teléfono de emergencia a mostrar (opcional)</label>
+          <label>Teléfono de emergencia (opcional, queda visible públicamente en la etiqueta)</label>
           <input value={emergencyPhone} onChange={(e) => setEmergencyPhone(e.target.value)} />
         </div>
 

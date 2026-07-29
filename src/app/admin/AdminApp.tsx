@@ -294,7 +294,7 @@ function ProfileCard({ profile, onUpdated }: { profile: Profile; onUpdated: () =
             <input value={photoUrl} onChange={(e) => setPhotoUrl(e.target.value)} />
           </div>
           <div className="field">
-            <label>Teléfono de emergencia a mostrar (opcional)</label>
+            <label>Teléfono de emergencia (opcional, queda visible públicamente en la etiqueta)</label>
             <input value={emergencyPhone} onChange={(e) => setEmergencyPhone(e.target.value)} />
           </div>
           <div style={{ display: "flex", gap: 8 }}>
