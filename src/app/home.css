@@ -273,10 +273,17 @@
   }
 }
 
+.l-product-media {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .l-product-media img {
   width: 100%;
-  max-width: 340px;
-  margin: 0 auto;
+  max-width: 220px;
+  flex: 1 1 180px;
   display: block;
   border-radius: 20px;
   box-shadow: 0 20px 45px -20px rgba(23, 40, 35, 0.3);

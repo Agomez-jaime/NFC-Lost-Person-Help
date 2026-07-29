@@ -68,6 +68,22 @@ function LockIcon() {
   );
 }
 
+function ColombiaFlag() {
+  return (
+    <svg
+      width="20"
+      height="14"
+      viewBox="0 0 30 20"
+      aria-label="Bandera de Colombia"
+      style={{ display: "inline-block", verticalAlign: "middle", borderRadius: 2 }}
+    >
+      <rect width="30" height="20" fill="#FCD116" />
+      <rect y="10" width="30" height="5" fill="#003893" />
+      <rect y="15" width="30" height="5" fill="#CE1126" />
+    </svg>
+  );
+}
+
 export default function HomePage() {
   return (
     <div className="landing">
@@ -151,6 +167,11 @@ export default function HomePage() {
               src="/product-necklace.png"
               alt="Dije en forma de corazón grabado con el mensaje 'Toca con el celular si estoy perdida'"
             />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/product-necklace-2.png"
+              alt="Dije en forma de flor grabado con el mensaje 'Toca con el celular si estoy perdida'"
+            />
           </div>
           <div className="l-product-copy">
             <span className="l-badge">
@@ -159,9 +180,9 @@ export default function HomePage() {
             <h2>Cuidar no tiene que verse como cuidar.</h2>
             <p>
               La etiqueta NFC no necesita verse como un dispositivo. Se puede grabar en
-              un dije, una pulsera o un llavero, como este corazón que solo dice "toca
-              con el celular si estoy perdida". Nadie más lo va a notar hasta que
-              realmente haga falta.
+              un dije, una pulsera o un llavero, en el estilo que más le guste a cada
+              persona, con un mensaje simple: "toca con el celular si estoy perdida".
+              Nadie más lo va a notar hasta que realmente haga falta.
             </p>
           </div>
         </div>
@@ -219,7 +240,9 @@ export default function HomePage() {
       </div>
 
       <footer className="l-footer">
-        <p>© 2026 Guardián NFC — hecho con amor ❤️ en Colombia 🇨🇴.</p>
+        <p>
+          © 2026 Guardián NFC — hecho con amor ❤️ en Colombia <ColombiaFlag />.
+        </p>
         <p className="l-attribution">
           Foto de familia:{" "}
           <a href="https://www.freepik.com" target="_blank" rel="noreferrer">
