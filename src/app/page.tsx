@@ -152,10 +152,10 @@ export default function HomePage() {
             <h2>Privacidad por diseño</h2>
             <p>
               Quien encuentra a la persona solo ve su nombre y la nota de cuidado que tú
-              escribas — <strong>nunca el número de teléfono o Telegram del cuidador</strong>.
-              Puede escribirte un mensaje o compartir su ubicación, y tú respondes directo,
-              sin que nadie vea tus datos de contacto. (El único teléfono que sí es público
-              es el de emergencia opcional que tú decidas mostrar, para casos urgentes.)
+              escribas. <strong>Nunca ve el número de teléfono ni el Telegram del cuidador.</strong>{" "}
+              Puede escribirte un mensaje o compartir su ubicación, y tú respondes directo sin
+              que nadie vea tus datos de contacto. El único teléfono que sí es público es el de
+              emergencia opcional, si decides agregarlo para casos urgentes.
             </p>
           </div>
           <div className="l-privacy-card">
@@ -176,7 +176,7 @@ export default function HomePage() {
                 <span className="l-privacy-icon">
                   <ClockIcon />
                 </span>
-                Cada ubicación y chat se borra solo a las 48 horas (el perfil no)
+                Cada ubicación y chat se borra solo a las 48 horas
               </li>
             </ul>
           </div>
@@ -187,7 +187,7 @@ export default function HomePage() {
         <div className="l-cta">
           <h2>Un enlace privado. Tranquilidad todos los días.</h2>
           <p>
-            Cada etiqueta es personal y gratuita para tu familia. Solo el cuidador
+            Cada etiqueta es personal para tu familia. Solo el cuidador
             principal puede crear o desactivar etiquetas — tú siempre puedes
             actualizar los datos de la tuya desde tu enlace privado.
           </p>
