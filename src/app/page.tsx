@@ -143,6 +143,30 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="l-product">
+        <div className="l-product-inner">
+          <div className="l-product-media">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/product-necklace.png"
+              alt="Dije en forma de corazón grabado con el mensaje 'Toca con el celular si estoy perdida'"
+            />
+          </div>
+          <div className="l-product-copy">
+            <span className="l-badge">
+              <ShieldIcon /> Discreto y con estilo
+            </span>
+            <h2>Cuidar no tiene que verse como cuidar.</h2>
+            <p>
+              La etiqueta NFC no necesita verse como un dispositivo. Se puede grabar en
+              un dije, una pulsera o un llavero, como este corazón que solo dice "toca
+              con el celular si estoy perdida". Nadie más lo va a notar hasta que
+              realmente haga falta.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="l-privacy">
         <div className="l-privacy-inner">
           <div className="l-privacy-copy">
