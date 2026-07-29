@@ -17,12 +17,21 @@ interface Profile {
 
 type AuthState = "checking" | "authed" | "anon";
 
+function extractEditToken(input: string): string {
+  const trimmed = input.trim().replace(/\/+$/, "");
+  const marker = "/e/";
+  const idx = trimmed.lastIndexOf(marker);
+  return idx === -1 ? trimmed : trimmed.slice(idx + marker.length);
+}
+
 export default function AdminApp() {
   const [auth, setAuth] = useState<AuthState>("checking");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState<string | null>(null);
   const [profiles, setProfiles] = useState<Profile[]>([]);
   const [creating, setCreating] = useState(false);
+  const [familyCode, setFamilyCode] = useState("");
+  const [familyCodeError, setFamilyCodeError] = useState<string | null>(null);
 
   async function loadProfiles() {
     const res = await fetch("/api/admin/profiles");
@@ -57,6 +66,17 @@ export default function AdminApp() {
     }
   }
 
+  function handleFamilyCode(e: FormEvent) {
+    e.preventDefault();
+    const token = extractEditToken(familyCode);
+    if (!token) {
+      setFamilyCodeError("Ingresa el código o pega el enlace que te compartieron.");
+      return;
+    }
+    setFamilyCodeError(null);
+    window.location.href = `/e/${token}`;
+  }
+
   async function handleLogout() {
     await fetch("/api/admin/logout", { method: "POST" });
     setAuth("anon");
@@ -76,7 +96,8 @@ export default function AdminApp() {
       <main className="page">
         <BrandHeader />
         <div className="card">
-          <h1>Panel del cuidador</h1>
+          <h1>Administrador</h1>
+          <p className="muted">Para crear y administrar todas las etiquetas.</p>
           <form onSubmit={handleLogin}>
             <div className="field">
               <label htmlFor="password">Contraseña</label>
@@ -91,6 +112,29 @@ export default function AdminApp() {
             {loginError && <p className="error-text">{loginError}</p>}
             <button className="btn-primary" type="submit">
               Entrar
+            </button>
+          </form>
+        </div>
+
+        <div className="card">
+          <h2>¿Eres familia?</h2>
+          <p className="muted">
+            Ingresa el código o pega el enlace privado que te compartieron para
+            editar el perfil de tu ser querido.
+          </p>
+          <form onSubmit={handleFamilyCode}>
+            <div className="field">
+              <label htmlFor="familyCode">Código o enlace</label>
+              <input
+                id="familyCode"
+                value={familyCode}
+                onChange={(e) => setFamilyCode(e.target.value)}
+                placeholder="Ej: AbC123xyz o el link completo"
+              />
+            </div>
+            {familyCodeError && <p className="error-text">{familyCodeError}</p>}
+            <button className="btn-secondary" type="submit" style={{ width: "100%" }}>
+              Entrar a mi enlace
             </button>
           </form>
         </div>

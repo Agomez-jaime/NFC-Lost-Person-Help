@@ -80,7 +80,7 @@ export default function HomePage() {
             Guardián NFC
           </a>
           <a className="l-btn l-btn-ghost l-btn-sm" href="/admin">
-            Acceso administrador
+            Entrar
           </a>
         </div>
       </header>
@@ -194,7 +194,7 @@ export default function HomePage() {
       </div>
 
       <footer className="l-footer">
-        <p>© 2026 Guardián NFC — hecho con cuidado.</p>
+        <p>© 2026 Guardián NFC — hecho con amor ❤️ en Colombia 🇨🇴.</p>
         <p className="l-attribution">
           Foto de familia:{" "}
           <a href="https://www.freepik.com" target="_blank" rel="noreferrer">
