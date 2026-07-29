@@ -277,16 +277,26 @@
   display: flex;
   gap: 18px;
   justify-content: center;
-  flex-wrap: wrap;
 }
 
 .l-product-media img {
   width: 100%;
   max-width: 220px;
-  flex: 1 1 180px;
+  flex: 1 1 0;
+  min-width: 0;
   display: block;
   border-radius: 20px;
   box-shadow: 0 20px 45px -20px rgba(23, 40, 35, 0.3);
+}
+
+@media (max-width: 420px) {
+  .l-product-media {
+    gap: 10px;
+  }
+  .l-product-media img {
+    max-width: 150px;
+    border-radius: 14px;
+  }
 }
 
 .l-product-copy h2 {
