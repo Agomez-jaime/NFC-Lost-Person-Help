@@ -25,14 +25,14 @@ export async function POST(
   const wasAlreadyActive = profile?.activeSessionId === sessionId;
   await setSessionLocation(sessionId, { lat, lng, accuracy });
 
-  if (profile?.guardianChatId) {
+  if (profile?.guardianChatIds.length) {
     const link = mapsLink(lat, lng);
     const precision =
       accuracy != null && Number.isFinite(accuracy) ? `\n(precisión aproximada: ±${Math.round(accuracy)} m)` : "";
     const text = wasAlreadyActive
       ? `📍 Ubicación actualizada de quien encontró a <b>${escapeHtml(profile.firstName)}</b>:\n${link}${precision}`
       : `🆘 Alguien escaneó la etiqueta de <b>${escapeHtml(profile.firstName)}</b> y compartió su ubicación:\n${link}${precision}\n\nPuedes responder aquí mismo y tu mensaje llegará a la persona que lo encontró.`;
-    await sendTelegramMessage(profile.guardianChatId, text);
+    await Promise.all(profile.guardianChatIds.map((chatId) => sendTelegramMessage(chatId, text)));
   }
 
   if (!wasAlreadyActive) {

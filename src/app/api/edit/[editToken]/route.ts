@@ -13,7 +13,8 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ edi
     firstName: profile.firstName,
     careNote: profile.careNote,
     emergencyPhone: profile.emergencyPhone ?? "",
-    telegramLinked: !!profile.guardianChatId,
+    telegramLinked: profile.guardianChatIds.length > 0,
+    telegramLinkedCount: profile.guardianChatIds.length,
     telegramLinkUrl: telegramStartLink(profile.tagId),
   });
 }

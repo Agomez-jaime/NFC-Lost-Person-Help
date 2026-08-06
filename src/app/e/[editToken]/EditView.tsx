@@ -8,6 +8,7 @@ interface EditData {
   careNote: string;
   emergencyPhone: string;
   telegramLinked: boolean;
+  telegramLinkedCount: number;
   telegramLinkUrl: string | null;
 }
 
@@ -145,7 +146,7 @@ export default function EditView({ editToken }: { editToken: string }) {
         <h2>Notificaciones por Telegram</h2>
         <p className="muted">
           {data.telegramLinked
-            ? "Tu Telegram ya está vinculado ✅. Recibirás un mensaje ahí si alguien encuentra a la persona."
+            ? `Telegram vinculado ✅ (${data.telegramLinkedCount} ${data.telegramLinkedCount === 1 ? "chat" : "chats"} recibiendo avisos). Puedes vincular otro celular más, por ejemplo el de otro familiar, sin quitar los que ya están.`
             : "Todavía no has vinculado Telegram. Sin este paso, no recibirás avisos cuando alguien escanee la etiqueta."}
         </p>
         {data.telegramLinkUrl && (
@@ -156,7 +157,7 @@ export default function EditView({ editToken }: { editToken: string }) {
             target="_blank"
             rel="noreferrer"
           >
-            {data.telegramLinked ? "Volver a vincular Telegram" : "Vincular Telegram"}
+            {data.telegramLinked ? "Vincular otro Telegram" : "Vincular Telegram"}
           </a>
         )}
       </div>

@@ -12,7 +12,11 @@ export interface ProfilePublic {
 export interface Profile extends ProfilePublic {
   tagId: string;
   editToken?: string;
-  guardianChatId?: number;
+  /** Every Telegram chat currently receiving alerts for this tag. Merges the
+   * legacy single `guardianChatId` field (from before multi-guardian support)
+   * with the newer `guardianChatIds` array, so old profiles keep working
+   * without any migration. */
+  guardianChatIds: number[];
   activeSessionId?: string;
   active: boolean;
 }
@@ -32,6 +36,9 @@ function sessionsCol() {
 }
 
 function toProfile(tagId: string, data: FirebaseFirestore.DocumentData): Profile {
+  const ids = new Set<number>(Array.isArray(data.guardianChatIds) ? data.guardianChatIds : []);
+  if (typeof data.guardianChatId === "number") ids.add(data.guardianChatId);
+
   return {
     tagId,
     editToken: data.editToken,
@@ -39,7 +46,7 @@ function toProfile(tagId: string, data: FirebaseFirestore.DocumentData): Profile
     careNote: data.careNote,
     photoUrl: data.photoUrl,
     emergencyPhone: data.emergencyPhone,
-    guardianChatId: data.guardianChatId,
+    guardianChatIds: [...ids],
     activeSessionId: data.activeSessionId,
     active: data.active !== false,
   };
@@ -116,14 +123,27 @@ export async function ensureEditToken(tagId: string, current?: string): Promise<
 }
 
 export async function getProfileByChatId(chatId: number): Promise<Profile | null> {
-  const snap = await profilesCol().where("guardianChatId", "==", chatId).limit(1).get();
-  if (snap.empty) return null;
-  const doc = snap.docs[0];
+  const arraySnap = await profilesCol().where("guardianChatIds", "array-contains", chatId).limit(1).get();
+  if (!arraySnap.empty) {
+    const doc = arraySnap.docs[0];
+    return toProfile(doc.id, doc.data());
+  }
+  // Fallback for profiles linked before guardianChatIds existed.
+  const legacySnap = await profilesCol().where("guardianChatId", "==", chatId).limit(1).get();
+  if (legacySnap.empty) return null;
+  const doc = legacySnap.docs[0];
   return toProfile(doc.id, doc.data());
 }
 
-export async function setGuardianChat(tagId: string, chatId: number): Promise<void> {
-  await profilesCol().doc(tagId).set({ guardianChatId: chatId }, { merge: true });
+/** Adds a Telegram chat to a tag's recipient list without removing anyone
+ * already linked (including via the legacy single-chat field). */
+export async function addGuardianChat(tagId: string, chatId: number): Promise<void> {
+  const profile = await getProfile(tagId);
+  const ids = new Set(profile?.guardianChatIds ?? []);
+  ids.add(chatId);
+  await profilesCol()
+    .doc(tagId)
+    .set({ guardianChatIds: [...ids] }, { merge: true });
 }
 
 export async function setActiveSession(tagId: string, sessionId: string): Promise<void> {

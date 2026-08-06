@@ -11,7 +11,7 @@ interface Profile {
   careNote: string;
   photoUrl?: string;
   emergencyPhone?: string;
-  guardianChatId?: number;
+  guardianChatIds: number[];
   active: boolean;
 }
 
@@ -267,14 +267,14 @@ function ProfileCard({ profile, onUpdated }: { profile: Profile; onUpdated: () =
       )}
 
       <p className="muted" style={{ marginTop: 12 }}>
-        {profile.guardianChatId
-          ? "Telegram vinculado ✅"
+        {profile.guardianChatIds.length > 0
+          ? `Telegram vinculado ✅ (${profile.guardianChatIds.length} ${profile.guardianChatIds.length === 1 ? "chat" : "chats"})`
           : "Telegram sin vincular todavía."}
       </p>
-      {!profile.guardianChatId && linkUrl && (
+      {linkUrl && (
         <p>
           <a href={linkUrl} target="_blank" rel="noreferrer">
-            Vincular esta etiqueta con Telegram
+            {profile.guardianChatIds.length > 0 ? "Vincular otro Telegram" : "Vincular esta etiqueta con Telegram"}
           </a>
         </p>
       )}

@@ -35,11 +35,9 @@ export async function POST(
   await addMessage(sessionId, "finder", text);
 
   const profile = await getProfile(session.tagId);
-  if (profile?.guardianChatId) {
-    await sendTelegramMessage(
-      profile.guardianChatId,
-      `💬 Mensaje de quien encontró a ${profile.firstName}:\n${text}`
-    );
+  if (profile?.guardianChatIds.length) {
+    const notifyText = `💬 Mensaje de quien encontró a ${profile.firstName}:\n${text}`;
+    await Promise.all(profile.guardianChatIds.map((chatId) => sendTelegramMessage(chatId, notifyText)));
   }
 
   return NextResponse.json({ ok: true });

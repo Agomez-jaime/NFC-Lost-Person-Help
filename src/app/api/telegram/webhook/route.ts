@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { addMessage, getProfile, getProfileByChatId, setGuardianChat } from "@/lib/db";
+import { addGuardianChat, addMessage, getProfile, getProfileByChatId } from "@/lib/db";
 import { sendTelegramMessage } from "@/lib/telegram";
 
 interface TelegramUpdate {
@@ -42,10 +42,15 @@ export async function POST(req: NextRequest) {
       await sendTelegramMessage(chatId, "No se encontró ninguna etiqueta con ese código.");
       return NextResponse.json({ ok: true });
     }
-    await setGuardianChat(tagId, chatId);
+    const alreadyLinked = profile.guardianChatIds.includes(chatId);
+    const hadOtherGuardian = profile.guardianChatIds.length > 0 && !alreadyLinked;
+    await addGuardianChat(tagId, chatId);
+    const extraNote = hadOtherGuardian
+      ? " Otros chats ya vinculados a esta etiqueta seguirán recibiendo los avisos también."
+      : "";
     await sendTelegramMessage(
       chatId,
-      `✅ Vinculado correctamente a <b>${profile.firstName}</b>. Si alguien escanea su etiqueta, recibirás un mensaje aquí con su ubicación, y podrás responderle escribiendo directamente en este chat.`
+      `✅ Vinculado correctamente a <b>${profile.firstName}</b>. Si alguien escanea su etiqueta, recibirás un mensaje aquí con su ubicación, y podrás responderle escribiendo directamente en este chat.${extraNote}`
     );
     return NextResponse.json({ ok: true });
   }

@@ -25,6 +25,7 @@ export default function TagView({ tagId }: { tagId: string }) {
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [locationState, setLocationState] = useState<LocationState>("idle");
   const [locationAccuracy, setLocationAccuracy] = useState<number | null>(null);
+  const [liveAccuracy, setLiveAccuracy] = useState<number | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
@@ -107,12 +108,13 @@ export default function TagView({ tagId }: { tagId: string }) {
       return;
     }
     setLocationState("sharing");
+    setLiveAccuracy(null);
 
-    // GPS fixes tend to get more precise over the first few seconds, so we
+    // GPS fixes tend to get more precise over the first several seconds, so we
     // sample readings briefly and keep the tightest one instead of settling
     // for whichever arrives first.
-    const GOOD_ENOUGH_METERS = 20;
-    const MAX_WAIT_MS = 8000;
+    const GOOD_ENOUGH_METERS = 12;
+    const MAX_WAIT_MS = 12000;
     let best: GeolocationPosition | null = null;
     let watchId: number | null = null;
     let settled = false;
@@ -153,6 +155,7 @@ export default function TagView({ tagId }: { tagId: string }) {
       (pos) => {
         if (!best || pos.coords.accuracy < best.coords.accuracy) {
           best = pos;
+          setLiveAccuracy(pos.coords.accuracy);
         }
         if (pos.coords.accuracy <= GOOD_ENOUGH_METERS) {
           clearTimeout(timeoutId);
@@ -257,6 +260,12 @@ export default function TagView({ tagId }: { tagId: string }) {
               ? "Buscando la ubicación más precisa…"
               : "Compartir mi ubicación"}
         </button>
+        {locationState === "sharing" && liveAccuracy != null && (
+          <p className="muted" style={{ marginTop: 8 }}>
+            Mejor lectura hasta ahora: ±{Math.round(liveAccuracy)} metros. Buscando algo más
+            preciso…
+          </p>
+        )}
         {locationState === "shared" && locationAccuracy != null && (
           <p className="muted" style={{ marginTop: 8 }}>
             Precisión aproximada: ±{Math.round(locationAccuracy)} metros. Si estás en un
