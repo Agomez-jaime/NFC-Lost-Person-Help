@@ -1,15 +1,16 @@
-const MARK_SRC: Record<"coral" | "white" | "ink" | "lavender", string> = {
+const MARK_SRC: Record<"coral" | "white" | "ink" | "lavender" | "green", string> = {
   coral: "/icons/vinculo-mark-coral.png",
   white: "/icons/vinculo-mark-white.png",
   ink: "/icons/vinculo-mark-ink.png",
   lavender: "/icons/vinculo-mark-lavender.png",
+  green: "/icons/vinculo-mark-green.png",
 };
 
 export function VinculoSymbol({
   variant = "coral",
   size = 22,
 }: {
-  variant?: "coral" | "white" | "ink" | "lavender";
+  variant?: "coral" | "white" | "ink" | "lavender" | "green";
   size?: number;
 }) {
   // eslint-disable-next-line @next/next/no-img-element
@@ -21,7 +22,7 @@ export default function BrandHeader({
   variant = "coral",
 }: {
   sub?: string;
-  variant?: "coral" | "white" | "ink" | "lavender";
+  variant?: "coral" | "white" | "ink" | "lavender" | "green";
 }) {
   return (
     <a className="brand-header" href="/">

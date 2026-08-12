@@ -18,12 +18,12 @@ const body = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "vínculo · seguro",
+  title: "vínculo",
   description: "Lo que importa, a un toque.",
 };
 
 export const viewport: Viewport = {
-  themeColor: "#D77E68",
+  themeColor: "#1E1E1C",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
