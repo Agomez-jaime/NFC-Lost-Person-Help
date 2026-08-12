@@ -250,7 +250,7 @@ function ProfileCard({ profile, onUpdated }: { profile: Profile; onUpdated: () =
       </div>
 
       {familyUrl && (
-        <div style={{ marginTop: 16, paddingTop: 16, borderTop: "1px solid var(--line)" }}>
+        <div style={{ marginTop: 16, paddingTop: 16, borderTop: "1px solid var(--v-line)" }}>
           <p className="muted" style={{ marginBottom: 6 }}>
             Enlace privado para que la familia edite nombre, nota y teléfono, y
             vincule su propio Telegram (no pueden ver otras etiquetas ni cambiar

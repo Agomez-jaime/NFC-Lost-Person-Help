@@ -1,17 +1,17 @@
 :root {
-  --teal: #1f6b62;
-  --teal-dark: #133e3a;
-  --teal-wash: #e2ede9;
-  --coral: #dd7e58;
-  --coral-dark: #b95f3d;
-  --coral-wash: #fbe6da;
-  --bg: #faf4e7;
-  --card-bg: #ffffff;
-  --text: #182129;
-  --muted: #5b6672;
-  --line: #e7ddc7;
-  --warn-bg: #fff4e3;
-  --warn-text: #8a5300;
+  --v-ink: #1e1e1c;
+  --v-ink-soft: #6b665d;
+  --v-paper: #f5efe5;
+  --v-paper-raised: #ffffff;
+  --v-coral: #d77e68;
+  --v-coral-dark: #b85d48;
+  --v-coral-light: #f3c5b5;
+  --v-coral-wash: #f8e5dc;
+  --v-gold: #c9a46a;
+  --v-line: #e4d8c8;
+  --v-warn-bg: #fff4e3;
+  --v-warn-text: #8a5300;
+  --v-error: #b3261e;
   color-scheme: light;
 }
 
@@ -23,11 +23,11 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background: var(--bg);
-  color: var(--text);
+  background: var(--v-paper);
+  color: var(--v-ink);
   font-family: var(--font-body), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 18px;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .page {
@@ -39,53 +39,60 @@ body {
   gap: 16px;
 }
 
-/* Shared brand mark, used at the top of /admin and /t/[tagId] so every page
-   reads as the same product, not a bare utility screen. */
+/* Shared brand lockup, used at the top of /admin, /t, /e so every page reads
+   as the same brand, not a bare utility screen. */
 .brand-header {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
   text-decoration: none;
-  font-family: var(--font-display), Georgia, serif;
-  font-weight: 600;
-  font-size: 1.15rem;
-  color: var(--text);
-  padding: 4px 0 4px;
+  padding: 4px 0;
 }
 
-.brand-icon {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: var(--teal);
-  color: white;
+.brand-wordmark {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 300;
+  font-size: 1.3rem;
+  letter-spacing: 0.01em;
+  color: var(--v-ink);
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: none;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.brand-sublabel {
+  font-family: var(--font-body), sans-serif;
+  font-weight: 600;
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--v-coral);
 }
 
 .card {
-  background: var(--card-bg);
-  border: 1px solid var(--line);
+  background: var(--v-paper-raised);
+  border: 1px solid var(--v-line);
   border-radius: 18px;
   padding: 22px;
-  box-shadow: 0 1px 3px rgba(24, 33, 41, 0.05);
+  box-shadow: 0 1px 3px rgba(30, 30, 28, 0.05);
 }
 
 h1 {
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-display), sans-serif;
+  font-weight: 300;
   font-size: 1.7rem;
   margin: 0 0 8px;
-  color: var(--text);
+  color: var(--v-ink);
   text-wrap: balance;
+  letter-spacing: -0.01em;
 }
 
 h2 {
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-display), sans-serif;
+  font-weight: 400;
   font-size: 1.2rem;
   margin: 0 0 8px;
-  color: var(--text);
+  color: var(--v-ink);
 }
 
 .photo {
@@ -94,7 +101,7 @@ h2 {
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 12px;
-  border: 3px solid var(--teal-wash);
+  border: 3px solid var(--v-coral-wash);
 }
 
 .note {
@@ -105,8 +112,8 @@ h2 {
 .emergency {
   margin-top: 12px;
   padding: 12px 14px;
-  background: var(--warn-bg);
-  color: var(--warn-text);
+  background: var(--v-warn-bg);
+  color: var(--v-warn-text);
   border-radius: 12px;
   font-size: 0.98rem;
 }
@@ -114,10 +121,10 @@ h2 {
 .btn-primary {
   width: 100%;
   padding: 16px;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: white;
-  background: var(--teal);
+  background: var(--v-coral);
   border: none;
   border-radius: 999px;
   cursor: pointer;
@@ -126,7 +133,7 @@ h2 {
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: var(--teal-dark);
+  background: var(--v-coral-dark);
 }
 
 .btn-primary:disabled {
@@ -135,13 +142,13 @@ h2 {
 }
 
 .warn {
-  color: #b3261e;
+  color: var(--v-error);
   font-size: 0.95rem;
   margin-top: 8px;
 }
 
 .muted {
-  color: var(--muted);
+  color: var(--v-ink-soft);
   font-size: 0.95rem;
 }
 
@@ -164,15 +171,15 @@ h2 {
 
 .bubble.finder {
   align-self: flex-end;
-  background: var(--teal);
+  background: var(--v-coral);
   color: white;
   border-bottom-right-radius: 4px;
 }
 
 .bubble.guardian {
   align-self: flex-start;
-  background: var(--teal-wash);
-  color: var(--text);
+  background: var(--v-coral-wash);
+  color: var(--v-ink);
   border-bottom-left-radius: 4px;
 }
 
@@ -186,18 +193,18 @@ h2 {
   min-width: 0;
   padding: 12px 14px;
   font-size: 1rem;
-  border: 1px solid var(--line);
+  border: 1px solid var(--v-line);
   border-radius: 999px;
   font-family: inherit;
-  background: var(--card-bg);
-  color: var(--text);
+  background: var(--v-paper-raised);
+  color: var(--v-ink);
 }
 
 .chat-form button {
   padding: 12px 20px;
   font-size: 1rem;
   font-weight: 600;
-  background: var(--teal);
+  background: var(--v-coral);
   color: white;
   border: none;
   border-radius: 999px;
@@ -205,7 +212,7 @@ h2 {
 }
 
 .chat-form button:hover:not(:disabled) {
-  background: var(--teal-dark);
+  background: var(--v-coral-dark);
 }
 
 .chat-form button:disabled {
@@ -215,12 +222,12 @@ h2 {
 
 .footer-note {
   text-align: center;
-  color: var(--muted);
+  color: var(--v-ink-soft);
   font-size: 0.9rem;
 }
 
 a {
-  color: var(--teal-dark);
+  color: var(--v-coral-dark);
 }
 
 /* --- Admin --- */
@@ -242,7 +249,7 @@ a {
 
 .field label {
   font-size: 0.9rem;
-  color: var(--muted);
+  color: var(--v-ink-soft);
   font-weight: 600;
 }
 
@@ -250,11 +257,11 @@ a {
 .field textarea {
   padding: 10px 12px;
   font-size: 1rem;
-  border: 1px solid var(--line);
+  border: 1px solid var(--v-line);
   border-radius: 10px;
   font-family: inherit;
-  background: var(--card-bg);
-  color: var(--text);
+  background: var(--v-paper-raised);
+  color: var(--v-ink);
 }
 
 .field input:focus-visible,
@@ -263,7 +270,7 @@ a {
 .btn-primary:focus-visible,
 .btn-secondary:focus-visible,
 .done-toggle:focus-visible {
-  outline: 2px solid var(--teal);
+  outline: 2px solid var(--v-coral);
   outline-offset: 2px;
 }
 
@@ -275,8 +282,8 @@ a {
 
 .tag-url {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  background: var(--teal-wash);
-  color: var(--teal-dark);
+  background: var(--v-coral-wash);
+  color: var(--v-coral-dark);
   padding: 7px 12px;
   border-radius: 8px;
   font-size: 0.85rem;
@@ -288,17 +295,29 @@ a {
   font-size: 0.95rem;
   font-weight: 600;
   background: white;
-  color: var(--teal-dark);
-  border: 1.5px solid var(--teal);
+  color: var(--v-coral-dark);
+  border: 1.5px solid var(--v-coral);
   border-radius: 999px;
   cursor: pointer;
 }
 
 .btn-secondary:hover {
-  background: var(--teal-wash);
+  background: var(--v-coral-wash);
 }
 
 .error-text {
-  color: #b3261e;
+  color: var(--v-error);
   font-size: 0.95rem;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body), sans-serif;
+  font-weight: 600;
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--v-coral-dark);
 }

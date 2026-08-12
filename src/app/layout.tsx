@@ -1,29 +1,29 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Work_Sans } from "next/font/google";
+import { Manrope } from "next/font/google";
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 import "./globals.css";
 
-const display = Fraunces({
+const display = Manrope({
   subsets: ["latin"],
-  weight: ["600", "700"],
+  weight: ["200", "300", "400"],
   variable: "--font-display",
   display: "swap",
 });
 
-const body = Work_Sans({
+const body = Manrope({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-body",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Guardián NFC",
-  description: "Página de ayuda vinculada a una etiqueta NFC/QR",
+  title: "vínculo · seguro",
+  description: "Lo que importa, a un toque.",
 };
 
 export const viewport: Viewport = {
-  themeColor: "#1F6B62",
+  themeColor: "#D77E68",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

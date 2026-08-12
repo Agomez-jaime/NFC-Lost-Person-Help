@@ -2,13 +2,13 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Guardián NFC",
-    short_name: "Guardián NFC",
-    description: "Página de ayuda vinculada a una etiqueta NFC/QR",
+    name: "vínculo · seguro",
+    short_name: "vínculo",
+    description: "Lo que importa, a un toque.",
     start_url: "/",
     display: "standalone",
-    background_color: "#FAF4E7",
-    theme_color: "#1F6B62",
+    background_color: "#F5EFE5",
+    theme_color: "#D77E68",
     icons: [
       {
         src: "/icons/icon-192.png",

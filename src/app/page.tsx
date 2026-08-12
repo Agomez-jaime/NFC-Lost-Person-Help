@@ -1,6 +1,7 @@
+import { VinculoSymbol } from "@/components/BrandHeader";
 import "./home.css";
 
-function ShieldIcon() {
+function ShieldCheckIcon() {
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path
@@ -14,6 +15,41 @@ function ShieldIcon() {
   );
 }
 
+function LockIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function HeartIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M12 20s-7.5-4.6-10-9.4C0.4 7.1 2.4 4 6 4c2 0 3.6 1.1 6 3.6C14.4 5.1 16 4 18 4c3.6 0 5.6 3.1 4 6.6C19.5 15.4 12 20 12 20z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function SparkleIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 function PhoneIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -23,47 +59,29 @@ function PhoneIcon() {
   );
 }
 
-function PinIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-      <circle cx="12" cy="9.5" r="2.4" stroke="currentColor" strokeWidth="1.8" />
-    </svg>
-  );
-}
-
-function ChatIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M4 12c0-4.4 3.8-8 8.5-8s8.5 3.6 8.5 8-3.8 8-8.5 8c-1 0-1.9-.1-2.8-.4L4 21l1.4-4.1C4.5 15.5 4 13.8 4 12z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function ClockIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth="1.8" />
-      <path d="M12 7.5V12l3 2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function LockIcon() {
+function CallIcon() {
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" strokeWidth="1.8" />
-      <path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      <path
+        d="M6 3.5c1 0 2.4 2 2.4 3s-1.2 1.6-1.2 2.6c0 2 3.7 5.7 5.7 5.7 1 0 1.6-1.2 2.6-1.2s3 1.4 3 2.4-2 2.5-3 2.5C10.5 18.5 5.5 13.5 5.5 8.5 5.5 7.5 5 5.5 6 3.5z"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function GearIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.7" />
+      <path
+        d="M12 3v2.2M12 18.8V21M21 12h-2.2M5.2 12H3M18.4 5.6l-1.6 1.6M7.2 16.8l-1.6 1.6M18.4 18.4l-1.6-1.6M7.2 7.2 5.6 5.6"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
@@ -91,9 +109,10 @@ export default function HomePage() {
         <div className="l-header-inner">
           <a className="l-brand" href="/">
             <span className="l-brand-icon">
-              <ShieldIcon />
+              <VinculoSymbol color="#D77E68" size={30} />
             </span>
-            Guardián NFC
+            vínculo
+            <span className="l-brand-sub">seguro</span>
           </a>
           <a className="l-btn l-btn-ghost l-btn-sm" href="/admin">
             Entrar
@@ -104,17 +123,17 @@ export default function HomePage() {
       <section className="l-hero">
         <div className="l-hero-inner">
           <div className="l-hero-copy">
-            <span className="l-badge">
-              <ShieldIcon /> Protección discreta y humana
-            </span>
-            <h1>Si tu ser querido se pierde, alguien podrá ayudarlo.</h1>
+            <span className="l-badge">Vínculo · Seguro</span>
+            <h1>
+              Para estar <em>ahí</em>, incluso cuando no puedes.
+            </h1>
             <p className="l-lede">
-              Cada etiqueta NFC tiene una página segura y privada. Cuando alguien la
-              escanea, el cuidador recibe al instante su ubicación —{" "}
-              <strong>sin mostrar nunca datos privados</strong>.
+              Tecnología que conecta lo invisible con lo que importa. Un toque, y
+              quien encuentre a tu familiar puede avisarte al instante —{" "}
+              <strong>sin ver nunca tus datos privados</strong>.
             </p>
             <div className="l-hero-actions">
-              <a className="l-btn l-btn-teal" href="#como-funciona">
+              <a className="l-btn l-btn-coral" href="#como-funciona">
                 Cómo funciona
               </a>
             </div>
@@ -132,29 +151,35 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="l-steps" id="como-funciona">
-        <h2>Tres pasos, tranquilidad todos los días</h2>
-        <div className="l-steps-grid">
-          <div className="l-step-card">
-            <div className="l-step-icon">
-              <PhoneIcon />
-            </div>
-            <h3>1. Recibe tu etiqueta</h3>
-            <p>Ya viene lista con el perfil de tu familiar. Puedes editar la nota y el teléfono cuando quieras.</p>
+      <section className="l-features" id="como-funciona">
+        <div className="l-features-grid">
+          <div className="l-feature">
+            <span className="l-feature-icon">
+              <ShieldCheckIcon />
+            </span>
+            <h3>Conecta al instante</h3>
+            <p>Un toque y aparece lo que importa.</p>
           </div>
-          <div className="l-step-card">
-            <div className="l-step-icon">
-              <ShieldIcon />
-            </div>
-            <h3>2. Vincula tu Telegram</h3>
-            <p>Desde tu celular, en menos de un minuto, para empezar a recibir las alertas.</p>
+          <div className="l-feature">
+            <span className="l-feature-icon">
+              <LockIcon />
+            </span>
+            <h3>Privado y seguro</h3>
+            <p>Solo tú decides qué información compartir.</p>
           </div>
-          <div className="l-step-card">
-            <div className="l-step-icon">
-              <PinIcon />
-            </div>
-            <h3>3. Recibe la alerta</h3>
-            <p>Si alguien la encuentra, te llega al instante un mensaje con su ubicación.</p>
+          <div className="l-feature">
+            <span className="l-feature-icon">
+              <HeartIcon />
+            </span>
+            <h3>Hecho para durar</h3>
+            <p>Diseños resistentes, para el día a día.</p>
+          </div>
+          <div className="l-feature">
+            <span className="l-feature-icon">
+              <SparkleIcon />
+            </span>
+            <h3>Discreto y con estilo</h3>
+            <p>Cuidar no tiene que verse como cuidar.</p>
           </div>
         </div>
       </section>
@@ -165,83 +190,72 @@ export default function HomePage() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/product-necklace.png"
-              alt="Dije en forma de corazón grabado con el mensaje 'Toca con el celular si estoy perdida'"
+              alt="Dije en forma de corazón grabado con el mensaje 'toca con el celular si estoy perdida'"
             />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/product-necklace-2.png"
-              alt="Dije en forma de flor grabado con el mensaje 'Toca con el celular si estoy perdida'"
+              alt="Dije en forma de flor con el mismo grabado, en otro estilo"
             />
           </div>
           <div className="l-product-copy">
-            <span className="l-badge">
-              <ShieldIcon /> Discreto y con estilo
-            </span>
-            <h2>Cuidar no tiene que verse como cuidar.</h2>
+            <span className="l-badge">Discreto y con estilo</span>
+            <h2>Un objeto que llevas puesto, no que escondes.</h2>
             <p>
-              La etiqueta NFC no necesita verse como un dispositivo. Se puede grabar en
-              un dije, una pulsera o un llavero, en el estilo que más le guste a cada
-              persona, con un mensaje simple: "toca con el celular si estoy perdida".
-              Nadie más lo va a notar hasta que realmente haga falta.
+              Cada dije se graba en el estilo que más le quede a cada persona, con
+              un mensaje simple: "toca con el celular si estoy perdida". Nadie más
+              lo va a notar, hasta que de verdad haga falta.
             </p>
           </div>
         </div>
       </section>
 
+      <div className="l-phone-wrap">
+        <div className="l-phone-card">
+          <span className="l-phone-icon">
+            <PhoneIcon />
+          </span>
+          <h2>Toca con el celular si estoy perdida.</h2>
+          <p>Una ayuda rápida cuando más importa.</p>
+        </div>
+      </div>
+
       <section className="l-privacy">
         <div className="l-privacy-inner">
-          <div className="l-privacy-copy">
-            <span className="l-lock-badge">
-              <LockIcon />
+          <div className="l-privacy-card">
+            <span className="l-privacy-icon">
+              <CallIcon />
             </span>
-            <h2>Privacidad por diseño</h2>
-            <p>
-              Quien encuentra a la persona solo ve su nombre y la nota de cuidado que tú
-              escribas. <strong>Nunca ve el número de teléfono ni el Telegram del cuidador.</strong>{" "}
-              Puede escribirte un mensaje o compartir su ubicación, y tú respondes directo sin
-              que nadie vea tus datos de contacto. El único teléfono que sí es público es el de
-              emergencia opcional, si decides agregarlo para casos urgentes.
-            </p>
+            <div>
+              <h3>Información que puedes compartir</h3>
+              <p>Contacto de emergencia, ubicación, información médica, alergias y más.</p>
+            </div>
           </div>
           <div className="l-privacy-card">
-            <ul>
-              <li>
-                <span className="l-privacy-icon">
-                  <ChatIcon />
-                </span>
-                Chat anónimo, sin exponer tu número
-              </li>
-              <li>
-                <span className="l-privacy-icon">
-                  <PinIcon />
-                </span>
-                Ubicación enviada con un solo toque
-              </li>
-              <li>
-                <span className="l-privacy-icon">
-                  <ClockIcon />
-                </span>
-                Cada ubicación y chat se borra solo a las 48 horas
-              </li>
-            </ul>
+            <span className="l-privacy-icon">
+              <GearIcon />
+            </span>
+            <div>
+              <h3>Tú tienes el control</h3>
+              <p>Activa, edita o desactiva la información cuando lo necesites.</p>
+            </div>
           </div>
         </div>
       </section>
 
       <div className="l-cta-wrap">
         <div className="l-cta">
-          <h2>Un enlace privado. Tranquilidad todos los días.</h2>
+          <h2>Un vínculo privado. Tranquilidad todos los días.</h2>
           <p>
-            Cada etiqueta es personal para tu familia. Solo el cuidador
-            principal puede crear o desactivar etiquetas — tú siempre puedes
-            actualizar los datos de la tuya desde tu enlace privado.
+            Cada etiqueta es personal para tu familia. Tú siempre puedes actualizar
+            los datos de la tuya desde tu enlace privado.
           </p>
         </div>
       </div>
 
       <footer className="l-footer">
         <p>
-          © 2026 Guardián NFC — hecho con amor ❤️ en Colombia <ColombiaFlag />.
+          © 2026 vínculo — hecho con amor ❤️ en Colombia <ColombiaFlag />.
         </p>
         <p className="l-attribution">
           Foto de familia:{" "}

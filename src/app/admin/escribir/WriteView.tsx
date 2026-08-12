@@ -128,8 +128,8 @@ export default function WriteView() {
             )}
 
             {mode !== "idle" && (
-              <div className="card" style={{ background: "var(--teal-wash)", marginTop: 12 }}>
-                <p style={{ fontWeight: 600, color: "var(--teal-dark)" }}>
+              <div className="card" style={{ background: "var(--v-coral-wash)", marginTop: 12 }}>
+                <p style={{ fontWeight: 600, color: "var(--v-coral-dark)" }}>
                   {mode === "writing" ? "Acerca la etiqueta al teléfono…" : "Acerca la etiqueta para leerla…"}
                 </p>
                 <button className="btn-secondary" style={{ marginTop: 10 }} onClick={cancel}>
