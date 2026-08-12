@@ -2,15 +2,22 @@ export function VinculoSymbol({ color = "currentColor", size = 22 }: { color?: s
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path
-        d="M6,8 C6,8 6.3,13 9,16.2 C10,17.4 10.6,17.7 11,17.7 C11.4,17.7 12.2,17.2 13.3,15.5 C14.6,13.5 15,10.8 15,9"
+        d="M4,9
+           C2,7 3,4.4 5.6,4.3
+           C8.2,4.2 9.6,6.1 8.5,7.9
+           C8,8.7 6.6,8.4 7.1,9.6
+           C7.4,10.3 8.6,10.1 9.1,11.1
+           C6.8,13.6 6.1,15.2 6.3,17.6
+           C6.4,18.9 7.1,18 7.9,17
+           C11,13.2 14.7,9 17.2,5.6"
         stroke={color}
         strokeWidth="1.6"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <circle cx="16.3" cy="8" r="0.85" fill={color} />
-      <path d="M15.3,6.3 Q17,4.6 18.9,5.7" stroke={color} strokeWidth="1.4" strokeLinecap="round" />
-      <path d="M13.9,4.3 Q17,1.6 20.4,3.5" stroke={color} strokeWidth="1.4" strokeLinecap="round" />
+      <circle cx="18.5" cy="6" r="0.85" fill={color} />
+      <path d="M17.4,4.4 Q19,2.8 20.8,3.8" stroke={color} strokeWidth="1.4" strokeLinecap="round" />
+      <path d="M15.8,2.6 Q19,0.3 22.2,2" stroke={color} strokeWidth="1.4" strokeLinecap="round" />
     </svg>
   );
 }
