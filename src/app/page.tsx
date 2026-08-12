@@ -239,45 +239,61 @@ export default function HomePage() {
       {tab === "inicio" && (
         <>
           <section className="l-hero">
-            <div className="l-hero-inner l-hero-inner-solo">
+            <div className="l-hero-inner">
               <div className="l-hero-copy">
-                <h1>La unión entre lo físico y lo invisible.</h1>
+                <span className="l-badge">La unión entre lo físico y lo invisible</span>
+                <h1>Lo que importa, a un toque.</h1>
                 <p className="l-lede">
-                  Un objeto que llevas contigo y que, con un toque, conecta con algo
-                  que importa. Vínculo es tecnología que desaparece para que lo humano
-                  aparezca.
+                  Un dije, una pulsera, un sticker — algo que ya llevas puesto. Cuando
+                  alguien lo toca con el celular, aparece justo lo que necesita en ese
+                  momento: cómo ayudarte, un recuerdo, o saber que estás bien.
                 </p>
                 <div className="l-hero-actions">
                   <a className="l-btn l-btn-coral" href="#tres-mundos">
                     Conoce los tres mundos
                   </a>
                 </div>
+                <p className="l-hero-note">Sin apps. Sin pantallas. Solo acercar el celular.</p>
+              </div>
+              <div className="l-hero-media">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/hero-family.jpg"
+                  alt="Una abuela sonríe mientras su nieta le da un beso en la mejilla"
+                />
               </div>
             </div>
           </section>
 
           <section className="l-features">
-            <div className="l-features-grid l-features-grid-3">
-              <div className="l-feature">
-                <span className="l-feature-icon">
-                  <HeartIcon />
-                </span>
-                <h3>Idea</h3>
-                <p>Conexión. Un gesto simple — tocar — que revela lo que importa, cuando más importa.</p>
-              </div>
-              <div className="l-feature">
-                <span className="l-feature-icon">
-                  <ShieldCheckIcon />
-                </span>
-                <h3>Promesa</h3>
-                <p>Un toque basta para revelar lo que importa. Seguro. Privado. Sin apps ni pantallas de por medio.</p>
-              </div>
+            <div className="l-features-grid">
               <div className="l-feature">
                 <span className="l-feature-icon">
                   <WaveSignalIcon />
                 </span>
-                <h3>Tecnología</h3>
-                <p>NFC pasivo a 13,56 MHz. Invisible, sin batería, siempre listo. El medio, nunca el protagonista.</p>
+                <h3>Un toque</h3>
+                <p>Nada que instalar. Acercas el celular y ya.</p>
+              </div>
+              <div className="l-feature">
+                <span className="l-feature-icon">
+                  <LockIcon />
+                </span>
+                <h3>Tú decides</h3>
+                <p>Qué se comparte, con quién y hasta cuándo.</p>
+              </div>
+              <div className="l-feature">
+                <span className="l-feature-icon">
+                  <SparkleIcon />
+                </span>
+                <h3>Se ve como joyería</h3>
+                <p>Porque lo es. La tecnología no se nota.</p>
+              </div>
+              <div className="l-feature">
+                <span className="l-feature-icon">
+                  <HeartIcon />
+                </span>
+                <h3>Para toda la familia</h3>
+                <p>Niños, padres, abuelos — cualquiera que quieras cerca.</p>
               </div>
             </div>
           </section>
@@ -285,22 +301,28 @@ export default function HomePage() {
           <section id="tres-mundos">
             <div className="l-worlds">
               <span className="l-badge">Un mismo símbolo, tres mundos</span>
-              <h2 className="l-worlds-title">Al ver cualquier producto, primero piensas "esto es Vínculo".</h2>
+              <h2 className="l-worlds-title">Elige el que necesitas hoy.</h2>
               <div className="l-worlds-grid">
                 <button className="l-world-card l-world-card-coral" onClick={() => setTab("seguro")}>
-                  <VinculoSymbol variant="coral" size={28} />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/product-necklace.png" alt="" className="l-world-photo" />
+                  <VinculoSymbol variant="coral" size={24} />
                   <h3>Seguro</h3>
-                  <p>Protección. "Para estar ahí."</p>
+                  <p>"Para estar ahí, incluso cuando no puedes."</p>
                 </button>
                 <button className="l-world-card l-world-card-lavender" onClick={() => setTab("recuerdos")}>
-                  <VinculoSymbol variant="lavender" size={28} />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/recuerdos-product.jpg" alt="" className="l-world-photo" />
+                  <VinculoSymbol variant="lavender" size={24} />
                   <h3>Recuerdos</h3>
-                  <p>Memoria. "Para volver a ese momento."</p>
+                  <p>"Para volver a ese momento."</p>
                 </button>
                 <button className="l-world-card l-world-card-green" onClick={() => setTab("ruta")}>
-                  <VinculoSymbol variant="green" size={28} />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/ruta-product.jpg" alt="" className="l-world-photo" />
+                  <VinculoSymbol variant="green" size={24} />
                   <h3>Ruta</h3>
-                  <p>Movimiento. "Muévete libre, sigue conectado."</p>
+                  <p>"Muévete libre. Sigue conectado."</p>
                 </button>
               </div>
             </div>
@@ -461,7 +483,7 @@ export default function HomePage() {
                     Escribir un recuerdo
                   </a>
                 </div>
-                <p className="l-hero-note">Emocional, pero nunca infantil.</p>
+                <p className="l-hero-note">Para hijos, padres, abuelos — para quien quieras tener cerca.</p>
               </div>
               <div className="l-hero-media">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -532,7 +554,7 @@ export default function HomePage() {
                 <div className="l-hero-actions">
                   <span className="l-coming-soon">Próximamente</span>
                 </div>
-                <p className="l-hero-note">La función gana al branding: hecho para sobrevivir en casco, moto y mochila.</p>
+                <p className="l-hero-note">Resiste sol, lluvia y kilómetros — sigue ahí cuando lo necesites.</p>
               </div>
               <div className="l-hero-media">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
