@@ -147,9 +147,12 @@ export default function AdminApp() {
       <BrandHeader />
       <div className="admin-header">
         <h1>Panel del cuidador</h1>
-        <div style={{ display: "flex", gap: 8 }}>
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
           <a className="btn-secondary" href="/admin/escribir" style={{ textDecoration: "none" }}>
-            Escribir etiquetas NFC
+            Escribir · Seguro
+          </a>
+          <a className="btn-secondary" href="/admin/recuerdos" style={{ textDecoration: "none" }}>
+            Escribir · Recuerdos
           </a>
           <button className="btn-secondary" onClick={handleLogout}>
             Salir
