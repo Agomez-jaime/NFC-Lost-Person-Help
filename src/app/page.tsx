@@ -241,7 +241,6 @@ export default function HomePage() {
           <section className="l-hero">
             <div className="l-hero-inner l-hero-inner-solo">
               <div className="l-hero-copy">
-                <span className="l-badge">La marca madre</span>
                 <h1>La unión entre lo físico y lo invisible.</h1>
                 <p className="l-lede">
                   Un objeto que llevas contigo y que, con un toque, conecta con algo
