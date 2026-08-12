@@ -102,6 +102,16 @@ function ColombiaFlag() {
   );
 }
 
+function InstagramIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.8" />
+      <circle cx="12" cy="12" r="4.2" stroke="currentColor" strokeWidth="1.8" />
+      <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" />
+    </svg>
+  );
+}
+
 export default function HomePage() {
   return (
     <div className="landing">
@@ -109,7 +119,7 @@ export default function HomePage() {
         <div className="l-header-inner">
           <a className="l-brand" href="/">
             <span className="l-brand-icon">
-              <VinculoSymbol color="#D77E68" size={30} />
+              <VinculoSymbol variant="coral" size={30} />
             </span>
             vínculo
             <span className="l-brand-sub">seguro</span>
@@ -254,6 +264,15 @@ export default function HomePage() {
       </div>
 
       <footer className="l-footer">
+        <a
+          className="l-btn l-btn-ghost l-btn-sm"
+          href="https://www.instagram.com/vinculo.wear/"
+          target="_blank"
+          rel="noreferrer"
+          style={{ marginBottom: 8 }}
+        >
+          <InstagramIcon /> @vinculo.wear
+        </a>
         <p>
           © 2026 vínculo — hecho con amor ❤️ en Colombia <ColombiaFlag />.
         </p>
