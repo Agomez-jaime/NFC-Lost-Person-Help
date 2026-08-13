@@ -258,8 +258,8 @@ export default function HomePage() {
               <div className="l-hero-media">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/hero-family.jpg"
-                  alt="Una abuela sonríe mientras su nieta le da un beso en la mejilla"
+                  src="/inicio-hero.jpg"
+                  alt="Celular con la app de Vínculo Recuerdos, el dije junto a su empaque, y una serie de fotos conectadas por la señal NFC"
                 />
               </div>
             </div>
